@@ -1,0 +1,30 @@
+{% extends "Compare/layout.html" %}
+
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="original">
+
+        <img class="original_image" alt="original_image" src="{{ image }}">
+
+        <div class="original_history_and_rating">
+            <div class="original_date_and_rating">
+                <p>Date:</p>
+                <p><b>Rating</b></p>
+            </div>
+            {% for obj in har %}
+                <div class="original_date_and_rating">
+                    <p>{{ obj.history }}:</p>
+                    <p><b>{{ obj.rating }}</b></p>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock %}

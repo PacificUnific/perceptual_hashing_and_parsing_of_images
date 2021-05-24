@@ -1,0 +1,68 @@
+{% extends "Compare/layout.html" %}
+
+{% load static %}
+
+{% block title %}
+    Compare
+{% endblock %}
+
+{% block body %}
+    <div class="images">
+
+        {% if ans %}
+            <div class="image_and_hash">
+                <img src="{% static 'original_img_1.png' %}" class="image" alt="image1">
+                <img src="{% static 'hash_1.png' %}" class="hash" alt="hash1">
+            </div>
+        {% endif %}
+
+        <div class="my_form">
+
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+
+                <h3 class="title">URLs of images:</h3>
+
+                <div class="urls">
+
+                    <div class="url">
+                        <p class="label_url">First image:</p>
+                        {{ form.img1 }}
+                    </div>
+
+                    <div class="url">
+                        <p class="label_url">Second image:</p>
+                        {{ form.img2 }}
+                    </div>
+
+                </div>
+
+                <h3 class="title">Algorithms:</h3>
+                {{ form.algo }}
+                <input class="flat" type="submit" value="Submit">
+            </form>
+
+            {% if ans %}
+                <p class="answer">
+                    This algorithm shows us similarity in <b>{{ ans }}%</b>, it means that images is
+                    {% if ans < 85 %}
+                        <b>not</b>
+                    {% endif %}
+                    similar<br/>
+                    Common length of hash is <b>{{ n }}</b>,
+                    but difference of hashes is <b>{{ difference }}</b><br/>
+                </p>
+            {% endif %}
+        </div>
+
+        {% if ans %}
+            <div class="image_and_hash">
+                <img src="{% static 'original_img_2.png' %}" class="image" alt="image2">
+                <img src="{% static 'hash_2.png' %}" class="hash" alt="hash2">
+            </div>
+        {% endif %}
+
+    </div>
+
+    <hr>
+{% endblock %}

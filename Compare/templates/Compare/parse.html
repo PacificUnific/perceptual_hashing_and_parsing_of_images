@@ -1,0 +1,32 @@
+{% extends "Compare/layout.html" %}
+
+{% block title %}
+    Download
+{% endblock %}
+
+{% block body %}
+
+    <form action="{% url 'parse' %}" method="post">
+        {% csrf_token %}
+        <div class="form">
+            <h3 class="title">Request:</h3>
+            {{ form.req }}
+            <h3 class="title">Num of requested images (No greater than 10):</h3>
+            {{ form.n }}
+        </div>
+        <input class="flat" type="submit" value="Download">
+    </form>
+
+    <hr>
+    {% if links_and_ids %}
+        <div class="container_of_images">
+            {% for image in links_and_ids %}
+                <a href="{% url 'image' image.id %}"><img class="image_for_parse" src="{{ image.link }}"></a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h3 class="title">{{ message }}</h3>
+    {% endif %}
+
+{% endblock %}
+

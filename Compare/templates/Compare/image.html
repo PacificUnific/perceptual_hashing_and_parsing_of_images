@@ -1,0 +1,30 @@
+{% extends "Compare/layout.html" %}
+
+{% load static %}
+
+{% block title %}
+    {{ image.title }}
+{% endblock %}
+
+{% block body %}
+
+    <h2 class="image_header">{{ image.title }}</h2>
+
+    <div class="image_body">
+
+        <div class="image_body_left">
+            <img class="image_body_label" src="{{ image.label }}" alt="{{ image.title }}">
+            <p class="image_body_item"><a href="{% url 'original_image' image.id %}" class="flat">Original Image</a></p>
+        </div>
+
+        <div class="image_body_right">
+            <p class="image_body_item"><b>Request:</b> {{ image.request }} </p>
+            <p class="image_body_item"><a href="{{ image.domain }}" class="flat">Domain</a></p>
+            <p class="image_body_item"><a href="{{ image.origin }}" class="flat">Source</a></p>
+            <p class="image_body_item"><b>Last date:</b> {{ image.date }} </p>
+            <p class="image_body_item"><b>Rating:</b> {{ image.top }} </p>
+        </div>
+
+    </div>
+
+{% endblock %}

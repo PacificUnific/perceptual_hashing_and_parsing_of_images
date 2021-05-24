@@ -1,0 +1,32 @@
+{% extends "Compare/layout.html" %}
+
+{% block title %}
+    Images
+{% endblock %}
+
+{% block body %}
+
+    <form action="{% url 'images' %}" method="post">
+        {% csrf_token %}
+        <div class="form">
+            <h3 class="title">Request:</h3>
+            {{ form.req }}
+            <h3 class="title">Date:</h3>
+            {{ form.date }}
+        </div>
+        <input class="flat" type="submit" value="Show">
+    </form>
+
+    <hr>
+    {% if links_and_ids %}
+        <div class="container_of_images">
+            {% for image in links_and_ids %}
+                <a href="{% url 'image' image.id %}"><img class="image_for_parse" src="{{ image.link }}"></a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h3 class="title">Sorry, images don't exist for your request</h3>
+    {% endif %}
+
+{% endblock %}
+

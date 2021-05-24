@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'Compare/styles.css' %}" rel="stylesheet">
+</head>
+<body>
+
+    <div class="header">
+        <h2><a class="header_link" href="{% url 'index' %}">Service of comparing of images</a></h2>
+        <h2><a class="header_link" href="{% url 'images' %}">Base of images</a></h2>
+        <h2><a class="header_link" href="{% url 'parse' %}">Service of parsing of images</a></h2>
+    </div>
+
+    <hr>
+
+    {% block body %}
+    {% endblock %}
+</body>
+</html>
